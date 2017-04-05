@@ -1,0 +1,36 @@
+
+
+body
+{
+	background-color: black;
+}
+
+
+
+img
+{
+	width: 70%;
+}
+
+.clockClass
+	{
+		color: white;
+		/*font-weight: bold;*/
+		 font-weight: 900;
+		/*font-family: Arial, Helvetica, sans-serif;*/
+		/*font-family: Impact, Charcoal, sans-serif;*/
+		letter-spacing: 1px;
+		font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+		font-size: 350%;
+	}
+
+
+.buttonClass
+	{
+		/*font-size: 300%;*/
+		background-color: red;
+		color: yellow;
+		/*padding: 25px 50px;*/
+		border: 7px solid #c1ccdd;
+		border-radius: 7px;
+	}

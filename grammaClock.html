@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<link rel="stylesheet" type="text/css" href="style.css">
+
+    
+    <script>
+
+    var AP = " ";
+     
+    function startTime() {
+        var today = new Date();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        getAP(h);
+        h = formHour(h);
+        m = formMinute(m);
+        document.getElementById('clock').innerHTML =
+        h + ":" + m + " " + AP;
+        var t = setTimeout(startTime, 500);
+    }
+
+
+
+    function formMinute(i) {
+        if (i < 10)
+        {i = "0" + i};
+        return i;
+    }
+
+
+    function formHour(h)
+        {
+        var newHour;
+        
+        if(h < 1)
+            {
+              newHour = 12;
+            }
+
+
+        else if(h > 12)
+            {
+                newHour = h - 12;
+            }
+
+        else
+        {
+            newHour = h;
+        }
+        return newHour;
+      
+        }
+
+     function getAP(h)
+        {
+            if(h<12)
+            {
+                AP = " AM";
+            }
+            else
+            {
+                AP = " PM"
+            }
+        }
+
+
+</script>
+
+
+
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body onclick="checkIfActive()" onload="startTime()">
+
+
+
+
+
+
+
+
+
+<audio id="morning">
+  <source src="morning.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="afternoon">
+  <source src="afternoon.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="evening">
+  <source src="evening.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<audio id="night">
+  <source src="night.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+
+
+
+<script>
+
+function playMorning() { 
+    var x = document.getElementById("morning"); 
+    x.play(); 
+} 
+
+function playAfternoon() { 
+    var x = document.getElementById("afternoon"); 
+    x.play(); 
+} 
+
+
+function playEvening() { 
+    var x = document.getElementById("evening"); 
+    x.play(); 
+} 
+
+function playNight() { 
+    var x = document.getElementById("night"); 
+    x.play(); 
+} 
+
+</script>
+
+
+
+
+
+
+
+
+<center>
+<h1 class='clockClass' id="clock"></h1>
+</center>
+
+
+<script src='https://code.responsivevoice.org/responsivevoice.js'>
+</script>
+
+
+
+
+<script>
+
+var active = false;
+var hour = 0;
+var minute = 0;
+var AP = " ";
+var hourGroup = " ";
+var timeText = " ";
+
+
+function checkIfActive()
+    {
+        if(active == false)
+        {
+            getTime()
+        }
+    }
+
+
+function getTime()
+    {	
+        active = true;
+        // playAudio();
+        var d = new Date();
+        setHour(d);
+        setAP();
+        setHourGroup();
+        setMinute(d);
+        formatHour();
+        formatMinute();
+        formatTimeText();
+        speakTime();
+        setTimeout(greeting, 3750);
+        setTimeout(makeInactive, 7000);
+        
+    }
+
+
+function setHour(dateTime)
+    {
+        hour = dateTime.getHours();
+    }
+
+
+function setAP()
+	{
+    	if(hour<12)
+        {
+        	AP = "AM";
+        }
+        else
+        {
+        	AP = "PM"
+        }
+    }
+
+
+function setHourGroup()
+    {
+        switch (hour) 
+        {
+         case 0:
+         case 1:
+         case 2:
+         case 3:
+         case 4:
+         case 5:
+         case 20:
+         case 21:
+         case 22:
+         case 23:
+            hourGroup = "night";
+            break;
+
+        case 6:
+        case 7:
+        case 8:
+        case 9:
+        case 10:
+        case 11:
+            hourGroup = "morning";
+            break;
+
+        case 12:
+        case 13:
+        case 14:
+        case 15:
+        case 16:
+            hourGroup = "afternoon";
+            break;
+
+        case 17:
+        case 18:
+        case 19:
+            hourGroup = "evening";
+            break;
+        
+
+      }
+    }
+
+
+function setMinute(dateTime)
+    {
+        minute = dateTime.getMinutes().toString(); 
+    }
+
+
+function formatHour()
+    { 
+      if(hour < 1)
+        {
+          hour = 12;
+        }
+
+       else if(hour > 12)
+        {
+            hour = hour - 12;
+        }
+    }
+  
+  
+function formatMinute()
+	{
+      if(minute<10)
+      {
+          minute = "0" + minute;
+      }
+    }
+    
+       
+function formatTimeText()
+	{
+    	timeText = "The time is, " + hour + ". " + minute + ". " + AP;
+    }
+    
+    
+function speakTime()
+	{
+    responsiveVoice.speak("" + timeText, "US English Female", {rate: 0.85});
+    
+    }
+
+
+function greeting ()
+    {
+        switch(hourGroup)
+        {
+            case "morning":
+                    playMorning();
+                    break;
+            case "afternoon":
+                    playAfternoon();
+                    break;
+            case "evening":
+                    playEvening();
+                    break;
+            case "night":
+                    playNight();
+                    break;
+            default:
+                    playNight();
+
+        }
+    
+    }
+
+
+function makeInactive()
+    {
+        active = false;
+    }
+
+
+
+
+</script>
+
+
+<center>
+<img src='batgirl.jpg'>
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+</html>
