@@ -178,8 +178,8 @@ function checkIfActive()
     {
         if(active == false)
         {
-            playNight();
-            // getTime() 
+            // playNight();
+            getTime() 
         }
     }
 
@@ -304,7 +304,7 @@ function formatTimeText()
     
 function speakTime()
 	{
-    responsiveVoice.speak("" + timeText, "US English Female", {rate: 0.95});
+    responsiveVoice.speak("" + timeText, "US English Female", {rate: 1.0});
     
     }
 
