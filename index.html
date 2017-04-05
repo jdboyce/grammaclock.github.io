@@ -113,17 +113,21 @@
   Your browser does not support the audio element.
 </audio>
 
-<audio id="night" src="https://grammaclock.github.io/night.mp3">
+
+<!-- src="https://grammaclock.github.io/night.mp3" -->
+
+<audio id="night" >
+
   <source src="night.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
 
-
-<audio id="buffer" src="https://grammaclock.github.io/buffer.mp3">
+<!-- src="https://grammaclock.github.io/buffer.mp3" -->
+<!-- <audio id="buffer" >
   <source src="buffer.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
-</audio>
+</audio> -->
 
 
 
@@ -145,10 +149,10 @@ function playEvening() {
     x.play(); 
 } 
 
-// function playBuffer() { 
-//     var x = document.getElementById("buffer"); 
-//     x.play(); 
-// } 
+function playNight() { 
+    var x = document.getElementById("night"); 
+    x.play(); 
+} 
 
 
 
@@ -202,14 +206,16 @@ function getTime()
         setHour(d);
         setAP();
         setHourGroup();
+        // playNight();
         greeting();
         setMinute(d);
         formatHour();
         formatMinute();
         formatTimeText();
-        // setTimeout(greeting, 4000);
         setTimeout(makeInactive, 8000);
-        speakTime();
+        setTimeout(speakTime, 200);
+
+       
     }
 
 
