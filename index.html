@@ -98,36 +98,28 @@
 
 
 
-<audio id="morning">
+<audio id="morning" src="https://grammaclock.github.io/morning.mp3">
   <source src="morning.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
-<audio id="afternoon">
+<audio id="afternoon" src="https://grammaclock.github.io/afternoon.mp3">
   <source src="afternoon.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
-<audio id="evening">
+
+<audio id="evening" src="https://grammaclock.github.io/evening.mp3" >
   <source src="evening.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
 
-<!--  -->
-
 <audio id="night" src="https://grammaclock.github.io/night.mp3">
-
   <source src="night.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
-
-<!-- src="https://grammaclock.github.io/buffer.mp3" -->
-<!-- <audio id="buffer" >
-  <source src="buffer.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio> -->
 
 
 
@@ -191,8 +183,6 @@ function checkIfActive()
     {
         if(active == false)
         {
-            // playNight();
-            // alert("sound");
             getTime();
         }
     }
@@ -201,12 +191,10 @@ function checkIfActive()
 function getTime()
     {	
         active = true;
-        // playAudio();
         var d = new Date();
         setHour(d);
         setAP();
         setHourGroup();
-        // playNight();
         greeting();
         setMinute(d);
         formatHour();
@@ -347,19 +335,6 @@ function speakTime()
     responsiveVoice.speak("" + timeText, "US English Female", {rate: 1.0});
     
     }
-
-// function callGreeting()
-// {
-//     setTimeout(greeting, 2000);
-//     // setTimeout(test, 2000);
-// }
-
-
-// function test()
-//     {
-//         alert("recon");
-//     }
-
 
 
 function makeInactive()
