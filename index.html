@@ -197,7 +197,7 @@ function getTime()
         formatMinute();
         formatTimeText();
         speakTime();
-        setTimeout(greeting, 3750);
+        setTimeout(callGreeting, 5000);
         setTimeout(makeInactive, 7000);
         
     }
@@ -308,6 +308,11 @@ function speakTime()
     
     }
 
+function callGreeting()
+{
+    setTimeout(greeting, 2000);
+}
+
 
 function greeting ()
     {
@@ -323,6 +328,7 @@ function greeting ()
                     playEvening();
                     break;
             case "night":
+                    alert("test");
                     playNight();
                     break;
             default:
