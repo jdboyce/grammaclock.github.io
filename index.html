@@ -178,7 +178,7 @@ function checkIfActive()
     {
         if(active == false)
         {
-            // playNight();
+            playNight();
             // alert("sound");
             getTime() 
         }
@@ -309,14 +309,14 @@ function speakTime()
 function callGreeting()
 {
     setTimeout(greeting, 2000);
-    setTimeout(test, 2000);
+    // setTimeout(test, 2000);
 }
 
 
-function test()
-    {
-        alert("recon");
-    }
+// function test()
+//     {
+//         alert("recon");
+//     }
 
 function greeting ()
     {
@@ -332,7 +332,6 @@ function greeting ()
                     playEvening();
                     break;
             case "night":
-                    alert("test");
                     playNight();
                     break;
             default:
