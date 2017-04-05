@@ -113,8 +113,8 @@
   Your browser does not support the audio element.
 </audio>
 
-<audio id="night" src="https://grammaclock.github.io/night.wav">
-  <source src="night.wav" type="audio/wav">
+<audio id="night" src="https://grammaclock.github.io/night.mp3">
+  <source src="night.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>
 
@@ -197,7 +197,7 @@ function getTime()
         formatHour();
         formatMinute();
         formatTimeText();
-        setTimeout(callGreeting, 3000);
+        setTimeout(greeting, 4000);
         setTimeout(makeInactive, 7000);
         speakTime();
     }
@@ -306,11 +306,11 @@ function speakTime()
     
     }
 
-function callGreeting()
-{
-    setTimeout(greeting, 2000);
-    // setTimeout(test, 2000);
-}
+// function callGreeting()
+// {
+//     setTimeout(greeting, 2000);
+//     // setTimeout(test, 2000);
+// }
 
 
 // function test()
