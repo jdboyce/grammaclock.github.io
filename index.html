@@ -178,7 +178,7 @@ function checkIfActive()
     {
         if(active == false)
         {
-            // playNight();
+            playNight();
             getTime() 
         }
     }
@@ -187,7 +187,7 @@ function checkIfActive()
 function getTime()
     {	
         active = true;
-        playAudio();
+        // playAudio();
         var d = new Date();
         setHour(d);
         setAP();
