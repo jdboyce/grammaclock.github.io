@@ -189,7 +189,7 @@ function checkIfActive()
         {
             // playNight();
             // alert("sound");
-            getTime() 
+            getTime();
         }
     }
 
@@ -275,6 +275,32 @@ function setHourGroup()
     }
 
 
+
+function greeting ()
+    {
+        switch(hourGroup)
+        {
+            case "morning":
+                    playMorning();
+                    break;
+            case "afternoon":
+                    playAfternoon();
+                    break;
+            case "evening":
+                    playEvening();
+                    break;
+            case "night":
+                    playNight();
+                    break;
+            default:
+                    playNight();
+
+        }
+
+    
+    }
+
+
 function setMinute(dateTime)
     {
         minute = dateTime.getMinutes().toString(); 
@@ -328,29 +354,6 @@ function speakTime()
 //         alert("recon");
 //     }
 
-function greeting ()
-    {
-        switch(hourGroup)
-        {
-            case "morning":
-                    playMorning();
-                    break;
-            case "afternoon":
-                    playAfternoon();
-                    break;
-            case "evening":
-                    playEvening();
-                    break;
-            case "night":
-                    playNight();
-                    break;
-            default:
-                    playNight();
-
-        }
-
-    
-    }
 
 
 function makeInactive()
