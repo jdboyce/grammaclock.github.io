@@ -197,7 +197,7 @@ function getTime()
         formatHour();
         formatMinute();
         formatTimeText();
-        setTimeout(callGreeting, 5000);
+        setTimeout(callGreeting, 3000);
         setTimeout(makeInactive, 7000);
         speakTime();
     }
@@ -261,8 +261,6 @@ function setHourGroup()
         case 19:
             hourGroup = "evening";
             break;
-        
-
       }
     }
 
@@ -311,8 +309,14 @@ function speakTime()
 function callGreeting()
 {
     setTimeout(greeting, 2000);
+    setTimeout(test, 2000);
 }
 
+
+function test()
+    {
+        alert("recon");
+    }
 
 function greeting ()
     {
