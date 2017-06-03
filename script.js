@@ -3,16 +3,16 @@
 
  var timePeriod = " ";
      
-    function startTime() {
-        var today = new Date();
-        var h = today.getHours();
-        var m = today.getMinutes();
-        gettimePeriod(h);
-        h = formHour(h);
-        m = formMinute(m);
-        document.getElementById('clock').innerHTML = h + ":" + m + " " + timePeriod;
-        var t = setTimeout(startTime, 500);
-    }
+	function startTime() {
+	    var today = new Date();
+	    var h = today.getHours();
+	    var m = today.getMinutes();
+	    gettimePeriod(h);
+	    h = formHour(h);
+	    m = formMinute(m);
+	    document.getElementById('clock').innerHTML = h + ":" + m + " " + timePeriod;
+	    setTimeout(startTime, 500);
+	}
 
 
 
