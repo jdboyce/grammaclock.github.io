@@ -1,54 +1,27 @@
 
 
 
- var timePeriod = " ";
-     
-	function startTime() {
+
+
+	///////////////////////////////   DIGITAL CLOCK   ///////////////////////////////
+
+
+	function runClock() {
 	    var today = new Date();
-	    var h = today.getHours();
-	    var m = today.getMinutes();
-	    gettimePeriod(h);
-	    h = formHour(h);
-	    m = formMinute(m);
-	    document.getElementById('clock').innerHTML = h + ":" + m + " " + timePeriod;
-	    setTimeout(startTime, 500);
+	    var hour = today.getHours();
+	    var minute = today.getMinutes();
+	    var period = getTimePeriod(hour);
+	    hour = formHour(hour);
+	    minute = formMinute(minute);
+	    document.getElementById('clock').innerHTML = hour + ":" + minute + " " + period;
+	    setTimeout(runClock, 500);
 	}
 
+	function getTimePeriod(hour) {
+        	
+        	var timePeriod;
 
-
-    function formMinute(i) {
-        if (i < 10)
-        {i = "0" + i};
-        return i;
-    }
-
-
-    function formHour(h)
-        {
-        var newHour;
-        
-        if(h < 1)
-            {
-              newHour = 12;
-            }
-
-
-        else if(h > 12)
-            {
-                newHour = h - 12;
-            }
-
-        else
-        {
-            newHour = h;
-        }
-        return newHour;
-      
-        }
-
-     function gettimePeriod(h)
-        {
-            if(h<12)
+            if(hour<12)
             {
                 timePeriod = " AM";
             }
@@ -56,7 +29,59 @@
             {
                 timePeriod = " PM"
             }
+
+            return timePeriod;
+    }
+
+    function formHour(hour) {
+
+        var newHour;
+        
+        if(hour < 1)
+        {
+        	newHour = 12;
         }
+        else if(hour > 12)
+        {
+            newHour = hour - 12;
+        }
+        else
+        {
+            newHour = hour;
+        }
+
+        return newHour;
+    }
+
+    function formMinute(minute) {
+
+        if (minute < 10)
+        {
+        	minute = "0" + minute;
+    	}
+
+        return minute;
+    }
+
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
