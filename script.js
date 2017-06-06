@@ -221,7 +221,7 @@
 	    
 	       
 	function formatTimeText(){
-    	timeString = "The hour_a is, " + hour_a + ". " + minute_a + ". " + period_a;
+    	timeString = "The time is, " + hour_a + ". " + minute_a + ". " + period_a;
     }
 	    
 	    
