@@ -3,22 +3,25 @@
 
 
 
-	////////////////////////////////////   DIGITAL CLOCK   ////////////////////////////////////
 
 
-	function runDigitalClock() {
+		//    DIGITAL CLOCK
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	function runDigitalClock(){
 	    var today_d = new Date();
 	    var hour_d = today_d.getHours();
 	    var minute_d = today_d.getMinutes();
-	    var d_period = d_GetPeriod(hour_d);
-	    hour_d = d_FormatHour(hour_d);
-	    minute_d = d_FormatMinute(minute_d);
-	    document.getElementById('digitalClock').innerHTML = hour_d + ":" + minute_d + " " + d_period;
+	    var period_d = getPeriod_d(hour_d);
+	    hour_d = formatHour_d(hour_d);
+	    minute_d = formatMinute_d(minute_d);
+	    document.getElementById('digitalClock').innerHTML = hour_d + ":" + minute_d + " " + period_d;
 	    setTimeout(runDigitalClock, 500);
 	}
 
-	function d_GetPeriod(hour_d) {
-        	
+
+	function getPeriod_d(hour_d){        	
     	var timePeriod;
 
         if(hour_d < 12)
@@ -29,12 +32,11 @@
         {
             timePeriod = " PM"
         }
-
         return timePeriod;
     }
 
-    function d_FormatHour(hour_d) {
-
+    
+    function formatHour_d(hour_d){
         var formattedHour;
         
         if(hour_d < 1)
@@ -49,69 +51,68 @@
         {
             formattedHour = hour_d;
         }
-
         return formattedHour;
     }
 
-    function d_FormatMinute(minute_d) {
 
+    function formatMinute_d(minute_d){
         if (minute_d < 10)
         {
         	minute_d = "0" + minute_d;
     	}
-
         return minute_d;
     }
 
-
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-	///////////////////////////////////   AUDIO GREETING   ////////////////////////////////////
 
+		//    AUDIO GREETING
 
-	function playMorning() { 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	function playMorning(){ 
 	    var x = document.getElementById("morning"); 
 	    x.play(); 
 	} 
+
 
 	function playAfternoon() { 
 	    var x = document.getElementById("afternoon"); 
 	    x.play(); 
 	} 
 
+
 	function playEvening() { 
 	    var x = document.getElementById("evening"); 
 	    x.play(); 
 	} 
+
 
 	function playNight() { 
 	    var x = document.getElementById("night"); 
 	    x.play(); 
 	} 
 
-
-    ///////////////////////////////////////////////////////////////////////////////////////////
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-	/////////////////////////////////////   AUDIO CLOCK   /////////////////////////////////////
 
+		//    AUDIO CLOCK
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	var active = false;
-	var a_hour = 0;
-	var a_minute = 0;
-	var a_period = " ";
+	var hour_a = 0;
+	var minute_a = 0;
+	var period_a = " ";
 	var hourGroup = " ";
 	var timeString = " ";
 
 
-	function runAudioClock() {
-        
+	function runAudioClock(){
         if(active == false)
         {
             formatTime();
@@ -121,159 +122,116 @@
     }
 
 
-
-	function formatTime()
-	    {	
-	        active = true;
-	        var a_today = new Date();
-	        setHour(a_today);
-	        a_GetPeriod();
-	        setHourGroup();
-	        setMinute(a_today);
-	        a_FormatHour();
-	        a_FormatMinute();
-	        formatTimeText();
-	        setTimeout(makeInactive, 8000);
-	        
-
-	       
-	    }
+	function formatTime(){	
+        active = true;
+        var today_a = new Date();
+        setHour(today_a);
+        a_GetPeriod();
+        setHourGroup();
+        setMinute(today_a);
+        a_FormatHour();
+        a_FormatMinute();
+        formatTimeText();
+        setTimeout(makeInactive, 8000);
+    }
 
 
-	function setHour(a_today)
-	    {
-	        a_hour = a_today.getHours();
-	    }
+	function setHour(today_a){
+        hour_a = today_a.getHours();
+    }
 
 
-	function a_GetPeriod()
-		{
-	    	if(a_hour < 12)
-	        {
-	        	a_period = "AM";
-	        }
-	        else
-	        {
-	        	a_period = "PM"
-	        }
-	    }
+	function a_GetPeriod(){
+    	if(hour_a < 12)
+        {
+        	period_a = "AM";
+        }
+        else
+        {
+        	period_a = "PM"
+        }
+    }
 
 
-	function setHourGroup()
-	    {
-	        switch (a_hour) 
-	        {
-	         case 0:
-	         case 1:
-	         case 2:
-	         case 3:
-	         case 4:
-	         case 5:
-	         case 20:
-	         case 21:
-	         case 22:
-	         case 23:
+	function setHourGroup(){
+    	switch (true) 
+        {
+	        case (hour_a >= 0 && hour_a <= 5):
+			case (hour_a >= 20 && hour_a <= 23):
 	            hourGroup = "night";
 	            break;
-
-	        case 6:
-	        case 7:
-	        case 8:
-	        case 9:
-	        case 10:
-	        case 11:
+			case (hour_a >= 6 && hour_a <= 11):
 	            hourGroup = "morning";
 	            break;
-
-	        case 12:
-	        case 13:
-	        case 14:
-	        case 15:
-	        case 16:
+		    case (hour_a >= 12 && hour_a <= 16):
 	            hourGroup = "afternoon";
 	            break;
-
-	        case 17:
-	        case 18:
-	        case 19:
+		    case (hour_a >= 17 && hour_a <= 19):
 	            hourGroup = "evening";
 	            break;
-
-	        default: hourGroup = "night";
-
-	      }
-	    }
+	        default: hourGroup = "night"; 
+    	}
+    }
 
 
-	function speakGreeting ()
-	    {
-	        switch(hourGroup)
-	        {
-	            case "morning":
-	                    playMorning();
-	                    break;
-	            case "afternoon":
-	                    playAfternoon();
-	                    break;
-	            case "evening":
-	                    playEvening();
-	                    break;
-	            case "night":
-	                    playNight();
-	                    break;
-	            default:
-	                    playNight();
-
-	        }
-
-	    
-	    }
+	function speakGreeting (){
+        switch(hourGroup)
+        {
+            case "morning":
+                    playMorning();
+                    break;
+            case "afternoon":
+                    playAfternoon();
+                    break;
+            case "evening":
+                    playEvening();
+                    break;
+            case "night":
+                    playNight();
+                    break;
+            default:
+                    playNight();
+        }
+    }
 
 
-	function setMinute(dateTime)
-	    {
-	        a_minute = dateTime.getMinutes().toString(); 
-	    }
+	function setMinute(dateTime){
+        minute_a = dateTime.getMinutes().toString(); 
+    }
 
 
-	function a_FormatHour()
-	    { 
-	      if(a_hour < 1)
-	        {
-	          a_hour = 12;
-	        }
-
-	       else if(a_hour > 12)
-	        {
-	            a_hour = a_hour - 12;
-	        }
-	    }
+	function a_FormatHour(){ 
+        if(hour_a < 1)
+        {
+        	hour_a = 12;
+        }
+        else if(hour_a > 12)
+        {
+            hour_a = hour_a - 12;
+        }
+    }
 	  
 	  
-	function a_FormatMinute()
-		{
-	      if(a_minute<10)
-	      {
-	          a_minute = "0" + a_minute;
-	      }
+	function a_FormatMinute(){
+    	if(minute_a < 10)
+	    {
+	        minute_a = "0" + minute_a;
 	    }
+    }
 	    
 	       
-	function formatTimeText()
-		{
-	    	timeString = "The time is, " + a_hour + ". " + a_minute + ". " + a_period;
-	    }
+	function formatTimeText(){
+    	timeString = "The hour_a is, " + hour_a + ". " + minute_a + ". " + period_a;
+    }
 	    
 	    
-	function speakTime()
-		{
+	function speakTime(){
 	    responsiveVoice.speak("" + timeString, "US English Female", {rate: 1.0});
-	    
-	    }
+	}
 
 
-	function makeInactive()
-	    {
-	        active = false;
-	    }
+	function makeInactive(){
+        active = false;
+    }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////
