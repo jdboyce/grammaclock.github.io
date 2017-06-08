@@ -2,9 +2,6 @@
 
 
 
-
-
-
 		//    DIGITAL CLOCK
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,7 +14,7 @@
 	    hour_d = formatHour_d(hour_d);
 	    minute_d = formatMinute_d(minute_d);
 	    document.getElementById('digitalClock').innerHTML = hour_d + ":" + minute_d + " " + period_d;
-	    setTimeout(runDigitalClock, 500);
+	    setTimeout(runDigitalClock, 1000);
 	}
 
 
@@ -68,43 +65,11 @@
 
 
 
-		//    AUDIO GREETING
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	function playMorning(){ 
-	    var x = document.getElementById("morning"); 
-	    x.play(); 
-	} 
-
-
-	function playAfternoon() { 
-	    var x = document.getElementById("afternoon"); 
-	    x.play(); 
-	} 
-
-
-	function playEvening() { 
-	    var x = document.getElementById("evening"); 
-	    x.play(); 
-	} 
-
-
-	function playNight() { 
-	    var x = document.getElementById("night"); 
-	    x.play(); 
-	} 
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 		//    AUDIO CLOCK
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	var active = false;
+	var isActive = false;
 	var hour_a = 0;
 	var minute_a = 0;
 	var period_a = " ";
@@ -113,17 +78,18 @@
 
 
 	function runAudioClock(){
-        if(active == false)
+        if(isActive == false)
         {
             formatTime();
-            speakGreeting();
+            chooseGreeting();
             speakTime();
         }
     }
 
 
 	function formatTime(){	
-        active = true;
+        isActive = true;
+        setTimeout(function makeInactive(){isActive = false;}, 8000);
         var today_a = new Date();
         setHour(today_a);
         a_GetPeriod();
@@ -132,7 +98,6 @@
         a_FormatHour();
         a_FormatMinute();
         formatTimeText();
-        setTimeout(makeInactive, 8000);
     }
 
 
@@ -174,27 +139,6 @@
     }
 
 
-	function speakGreeting (){
-        switch(hourGroup)
-        {
-            case "morning":
-                    playMorning();
-                    break;
-            case "afternoon":
-                    playAfternoon();
-                    break;
-            case "evening":
-                    playEvening();
-                    break;
-            case "night":
-                    playNight();
-                    break;
-            default:
-                    playNight();
-        }
-    }
-
-
 	function setMinute(dateTime){
         minute_a = dateTime.getMinutes().toString(); 
     }
@@ -230,8 +174,9 @@
 	}
 
 
-	function makeInactive(){
-        active = false;
-    }
+	function chooseGreeting(){
+		var audioElement = document.getElementById(hourGroup); 
+	    audioElement.play(); 
+	}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
